@@ -1,0 +1,9 @@
+#!/bin/bash
+
+./scripts/javac with-test
+
+CP=`lein classpath`
+
+java -cp "$CP" \
+    -Xdebug -Xrunjdwp:transport=dt_socket,address=9093,server=y,suspend=n \
+    clojure.main -m org.httpkit.server-test
